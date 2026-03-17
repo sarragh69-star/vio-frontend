@@ -708,6 +708,108 @@ hr{border:none;border-top:1px solid var(--gray-100);margin:16px 0}
 @keyframes pulse-ring{0%{transform:scale(1);opacity:1}100%{transform:scale(1.6);opacity:0}}
 .vio-mission-marker{background:#ef4444;color:white;padding:4px 10px;border-radius:8px;font-size:11px;font-weight:700;white-space:nowrap;box-shadow:0 3px 10px rgba(239,68,68,.4)}
 
+
+/*══════════════════════════════════════
+  MOBILE HAMBURGER MENU
+══════════════════════════════════════*/
+.mobile-menu-btn{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:8px;margin-left:8px}
+.mobile-menu-btn span{display:block;width:22px;height:2px;background:var(--gray-700);border-radius:2px;transition:.25s}
+.mobile-nav-drawer{display:none;position:fixed;top:66px;left:0;right:0;background:#fff;z-index:200;border-bottom:1px solid var(--gray-100);box-shadow:0 8px 32px rgba(0,0,0,.12);padding:16px 5%}
+.mobile-nav-drawer.open{display:block}
+.mob-nav-link{display:block;font-size:15px;font-weight:500;color:var(--gray-700);text-decoration:none;padding:12px 0;border-bottom:1px solid var(--gray-100)}
+
+/*══════════════════════════════════════
+  MOBILE RESPONSIVE
+══════════════════════════════════════*/
+@media(max-width:768px){
+  /* NAV — hide desktop items, show hamburger */
+  .land-nav{padding:0 4%;height:58px}
+  .land-nav-links{display:none}
+  .land-nav-actions{display:none!important}
+  .nav-desktop-only{display:none!important}
+  .mobile-menu-btn{display:flex}
+
+  /* HERO */
+  .hero{padding:50px 5% 44px;min-height:auto;flex-direction:column}
+  .hero-h1{font-size:32px;letter-spacing:-.01em}
+  .hero-sub{font-size:14px;margin-bottom:24px}
+  .hero-preview{display:none}
+  .hero-float-icon{display:none}
+  .hero-glow,.hero-glow2{display:none}
+  .hero-cta{flex-direction:column;gap:10px;width:100%}
+  .hero-cta .btn{width:100%;justify-content:center;padding:13px}
+  .hero-trust{flex-wrap:wrap;gap:8px;margin-top:18px}
+  .hero-trust-item{font-size:12px}
+  .hero-eyebrow{font-size:11px}
+  .hero-content{max-width:100%;z-index:2}
+
+  /* LOGOS */
+  .logos-band{padding:18px 4%}
+  .logos-band-label{font-size:11px}
+
+  /* STATS */
+  .stats-row{flex-direction:column;gap:24px;padding:36px 5%}
+  .stat-divider{width:50px;height:1px;background:rgba(255,255,255,.2)}
+  .stat-num{font-size:36px}
+  .stat-lab{font-size:12px}
+
+  /* SECTIONS */
+  .section{padding:48px 4%}
+  .section-h{font-size:26px;line-height:1.25}
+  .section-sub{font-size:14px}
+
+  /* FEATURES — 2 col grid */
+  .features-grid{grid-template-columns:1fr 1fr;gap:10px;margin-top:28px}
+  .feat-card{padding:14px;border-radius:12px}
+  .feat-icon{width:38px;height:38px;border-radius:10px;margin-bottom:10px}
+  .feat-icon svg{width:18px;height:18px}
+  .feat-h{font-size:13px;margin-bottom:6px}
+  .feat-p{font-size:11px;line-height:1.5;margin-bottom:8px}
+  .feat-tag{font-size:10px;padding:3px 8px}
+
+  /* HOW IT WORKS */
+  #how-steps-grid{grid-template-columns:1fr!important}
+  #how-connector-line{display:none}
+
+  /* SHOWCASE */
+  .showcase-tabs{gap:4px;flex-wrap:wrap}
+  .showcase-tab{padding:6px 12px;font-size:11px}
+  .showcase-mock{padding:12px}
+
+  /* USE CASES — 2 col */
+  .use-grid{grid-template-columns:1fr 1fr;gap:8px;margin-top:28px}
+  .use-card{padding:16px 10px;border-radius:10px}
+  .use-icon{font-size:26px;margin-bottom:8px}
+  .use-h{font-size:12px}
+  .use-p{font-size:11px}
+
+  /* PRICING */
+  .price-card{padding:20px 16px}
+
+  /* TESTIMONIALS */
+  #testimonials-grid{grid-template-columns:1fr!important}
+  .testimonial-card{padding:18px}
+  .test-text{font-size:13px}
+
+  /* FINAL CTA */
+  .final-cta{padding:60px 5%}
+  .final-cta h2{font-size:26px}
+  .final-cta p{font-size:14px;margin-bottom:24px}
+  .final-cta .btn{width:100%;max-width:300px}
+
+  /* FOOTER */
+  .footer-grid{grid-template-columns:1fr 1fr!important;gap:24px!important}
+  .footer-bottom{flex-direction:column;align-items:center;text-align:center;gap:10px}
+}
+
+@media(max-width:420px){
+  .hero-h1{font-size:26px}
+  .features-grid{grid-template-columns:1fr}
+  .use-grid{grid-template-columns:1fr}
+  .section-h{font-size:22px}
+  .footer-grid{grid-template-columns:1fr!important}
+}
+
 </style>
 </head>
 <body>
@@ -744,10 +846,29 @@ hr{border:none;border-top:1px solid var(--gray-100);margin:16px 0}
         <button onclick="setLang('fr')">FR</button>
         <button onclick="setLang('ar')">AR</button>
       </div>
-      <button class="btn btn-ghost btn-sm" onclick="go('onboarding')" data-i18n="signin">Sign In</button>
-      <button class="btn btn-primary btn-sm" onclick="go('onboarding')" data-i18n="start_free">Start Free</button>
+      <button class="btn btn-ghost btn-sm nav-desktop-only" onclick="go('worker')" data-i18n="worker_app" style="display:flex;align-items:center;gap:5px"><span style="font-size:14px">📱</span> <span data-i18n="worker_app">Worker App</span></button>
+      <button class="btn btn-ghost btn-sm nav-desktop-only" onclick="go('onboarding')" data-i18n="signin">Sign In</button>
+      <button class="btn btn-primary btn-sm nav-desktop-only" onclick="go('onboarding')" data-i18n="start_free">Start Free</button>
     </div>
+    <button class="mobile-menu-btn" id="mob-btn" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+  <div class="mobile-nav-drawer" id="mobile-menu">
+    <div class="lang-sw" style="width:100%;margin-bottom:14px">
+      <button onclick="setLang('en');closeMobileMenu()" style="flex:1;padding:10px">EN</button>
+      <button onclick="setLang('fr');closeMobileMenu()" style="flex:1;padding:10px">FR</button>
+      <button onclick="setLang('ar');closeMobileMenu()" style="flex:1;padding:10px">AR</button>
+    </div>
+    <a href="#features" onclick="closeMobileMenu()" class="mob-nav-link" data-i18n="features">Features</a>
+    <a href="#usecases" onclick="closeMobileMenu()" class="mob-nav-link" data-i18n="usecases">Industries</a>
+    <a href="#pricing" onclick="closeMobileMenu()" class="mob-nav-link" data-i18n="pricing_nav">Pricing</a>
+    <a href="#" onclick="go('worker');closeMobileMenu()" class="mob-nav-link" data-i18n="worker_app">Worker App</a>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-ghost" style="flex:1" onclick="go('onboarding');closeMobileMenu()" data-i18n="signin">Sign In</button>
+      <button class="btn btn-primary" style="flex:1" onclick="go('onboarding');closeMobileMenu()" data-i18n="start_free">Start Free</button>
+    </div>
+  </div>
 
   <!-- HERO -->
   <section class="hero" id="hero-section">
@@ -777,7 +898,7 @@ hr{border:none;border-top:1px solid var(--gray-100);margin:16px 0}
         <button class="btn btn-lg hero-btn-secondary" onclick="go('manager')">
           <span style="display:inline-flex;align-items:center;gap:6px">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            <span data-i18n="cta_watch">Watch Demo</span>
+            <span data-i18n="cta_watch">Live Demo</span>
           </span>
         </button>
       </div>
@@ -931,7 +1052,7 @@ hr{border:none;border-top:1px solid var(--gray-100);margin:16px 0}
       <div class="section-label" style="color:#22d3ee" data-i18n="how_label">How It Works</div>
       <h2 class="section-h" style="color:#fff" data-i18n="how_title">Up and running in 3 steps</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:900px;margin:0 auto;position:relative">
+    <div style="id="how-steps-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:900px;margin:0 auto;position:relative">
       <!-- Connector line -->
       <div style="position:absolute;top:40px;left:16%;right:16%;height:2px;background:linear-gradient(90deg,#1a56db,#22d3ee);z-index:0"></div>
       <div style="text-align:center;position:relative;z-index:1">
@@ -1045,51 +1166,44 @@ hr{border:none;border-top:1px solid var(--gray-100);margin:16px 0}
       <h2 class="section-h" data-i18n="price_title">Simple, transparent pricing</h2>
       <p class="section-sub" data-i18n="price_sub">Pay only for active workers. No long-term contracts.</p>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:800px;margin:0 auto">
-
-      <!-- PRO (featured) -->
-      <div class="price-card featured" style="position:relative;overflow:hidden">
-        <div style="position:absolute;top:16px;right:16px">
-          <span class="badge" style="background:var(--blue);color:#fff;font-size:11px" data-i18n="most_popular">&#x2B50; Most Popular</span>
+    <div style="max-width:700px;margin:0 auto">
+      <div class="price-card featured" style="border:2px solid #1a56db;padding:36px;text-align:center">
+        <!-- Header -->
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(26,86,219,.1);border-radius:20px;padding:6px 16px;margin-bottom:20px">
+          <span style="font-size:13px;font-weight:700;color:var(--blue)">⚡ VIO Platform</span>
         </div>
-        <div class="price-name" data-i18n="plan2_name">Pro</div>
-        <div style="display:flex;align-items:baseline;gap:4px;margin:10px 0 2px">
-          <div style="font-size:46px;font-weight:900;color:var(--gray-900)">500</div>
-          <div style="font-size:16px;color:var(--gray-500);font-weight:600">DA</div>
+        <div style="font-size:32px;font-weight:900;color:var(--gray-900);margin-bottom:6px" data-i18n="custom_pricing">Custom Pricing</div>
+        <div style="font-size:15px;color:var(--gray-400);margin-bottom:28px" data-i18n="contact_us_price">Contact us for a tailored quote based on your team size</div>
+        <!-- Features 2-col -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;text-align:left;margin-bottom:28px">
+          <ul class="price-features" style="border-right:1px solid var(--gray-100);padding-right:20px;margin:0">
+            <li data-i18n="pf2_0">Worker management</li>
+            <li data-i18n="pf2_1">Task assignment &amp; tracking</li>
+            <li data-i18n="pf2_2">Mobile PWA worker app</li>
+            <li data-i18n="pf2_3">Basic &amp; advanced reports</li>
+            <li data-i18n="pf2_4">Live GPS tracking</li>
+            <li data-i18n="pf2_5">Performance analytics</li>
+            <li data-i18n="pf2_6">Smart risk alerts</li>
+            <li data-i18n="pf2_7">Advanced AI reports</li>
+          </ul>
+          <ul class="price-features" style="padding-left:20px;margin:0">
+            <li data-i18n="pf3_1">Unlimited workers</li>
+            <li data-i18n="pf3_2">Advanced analytics dashboard</li>
+            <li data-i18n="pf3_3">Dedicated support manager</li>
+            <li data-i18n="pf3_4">Custom integrations (ERP, SAP)</li>
+            <li data-i18n="pf3_5">SLA guarantee</li>
+            <li data-i18n="pf3_6">On-premise deployment option</li>
+            <li data-i18n="pf3_7">White-label available</li>
+            <li>AI fatigue &amp; risk detection</li>
+          </ul>
         </div>
-        <div style="font-size:13px;color:var(--gray-400);margin-bottom:6px" data-i18n="per_worker">per worker / month</div>
-        <div class="price-desc" data-i18n="plan2_desc">Everything you need to run smart field operations</div>
-        <ul class="price-features">
-          <li data-i18n="pf2_0">Worker management</li>
-          <li data-i18n="pf2_1">Task assignment</li>
-          <li data-i18n="pf2_2">Mobile app (PWA)</li>
-          <li data-i18n="pf2_3">Basic reports</li>
-          <li data-i18n="pf2_4">Live GPS tracking</li>
-          <li data-i18n="pf2_5">Performance analytics</li>
-          <li data-i18n="pf2_6">Smart risk alerts</li>
-          <li data-i18n="pf2_7">Advanced AI reports</li>
-        </ul>
+        <!-- CTAs -->
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-primary btn-lg" onclick="go('onboarding')" data-i18n="start_trial">🚀 Start Free Demo</button>
+          <button class="btn btn-ghost btn-lg" data-i18n="contact_sales">📞 Contact Sales</button>
+        </div>
       </div>
-      <!-- ENTERPRISE -->
-      <div class="price-card" style="border:1.5px solid var(--gray-200)">
-        <div class="price-name" data-i18n="plan3_name">Enterprise</div>
-        <div style="font-size:32px;font-weight:900;margin:10px 0 2px;color:var(--gray-900)" data-i18n="custom_pricing">Custom Pricing</div>
-        <div style="font-size:13px;color:var(--gray-400);margin-bottom:6px" data-i18n="contact_us_price">Contact us for a tailored quote</div>
-        <div class="price-desc" data-i18n="plan3_desc">For large companies with complex field operations</div>
-        <ul class="price-features">
-          <li data-i18n="pf3_1">Unlimited workers</li>
-          <li data-i18n="pf3_2">Advanced analytics dashboard</li>
-          <li data-i18n="pf3_3">Dedicated support manager</li>
-          <li data-i18n="pf3_4">Custom integrations (ERP, SAP)</li>
-          <li data-i18n="pf3_5">SLA guarantee</li>
-          <li data-i18n="pf3_6">On-premise deployment option</li>
-          <li data-i18n="pf3_7">White-label available</li>
-        </ul>
-        <button class="btn w-full" style="padding:13px;font-size:14px;background:var(--gray-900);color:#fff;border-radius:8px" data-i18n="contact_sales">Contact Sales</button>
-      </div>
-
     </div>
-    <!-- Compare note -->
     <div style="text-align:center;margin-top:32px;font-size:13px;color:var(--gray-400)" data-i18n="price_note">All plans include the mobile PWA worker app &bull; Cancel anytime &bull; No credit card to start demo</div>
   </section>
 
@@ -1099,7 +1213,7 @@ hr{border:none;border-top:1px solid var(--gray-100);margin:16px 0}
       <div class="section-label" data-i18n="test_label">Testimonials</div>
       <h2 class="section-h" data-i18n="test_title">What field managers say</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto">
+    <div style="id="testimonials-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto">
       <div class="testimonial-card">
         <div class="test-stars">★★★★★</div>
         <p class="test-text" data-i18n="test1_text">"VIO reduced our response time by 40%. We went from WhatsApp chaos to real-time operations control."</p>
@@ -1126,17 +1240,60 @@ hr{border:none;border-top:1px solid var(--gray-100);margin:16px 0}
       <p data-i18n="final_sub">Join 500+ companies already using VIO to optimize their field operations</p>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
         <button class="btn btn-white btn-lg" onclick="go('onboarding')">🚀 <span data-i18n="cta_demo">Start Demo Free</span></button>
-        <button class="btn btn-lg" style="background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.3)" onclick="go('manager')"><span data-i18n="view_demo">View Demo Dashboard</span></button>
       </div>
 
     </div>
   </div>
-  <footer class="land-footer">
-    <div class="land-footer-text">© 2025 VIO Platform — <strong style="color:rgba(255,255,255,.6)">Vigilant Intelligence Operations</strong></div>
-    <div class="land-footer-text" style="display:flex;gap:16px">
-      <a href="#" style="color:rgba(255,255,255,.4);text-decoration:none" data-i18n="privacy">Privacy</a>
-      <a href="#" style="color:rgba(255,255,255,.4);text-decoration:none" data-i18n="terms">Terms</a>
-      <a href="/cdn-cgi/l/email-protection#e98a86879d888a9da99f8086c78d93" style="color:rgba(255,255,255,.4);text-decoration:none"><span class="__cf_email__" data-cfemail="ef8c80819b8e8c9baf998680c18b95">[email&#160;protected]</span></a>
+  <footer style="background:#080d1a;padding:56px 6% 24px">
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;max-width:1200px;margin:0 auto 44px" class="footer-grid">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <svg width="30" height="30" viewBox="0 0 42 42" fill="none"><rect width="42" height="42" rx="9" fill="url(#fgrad)"/><path d="M9 10 L18 30 L21 24 L24 30 L33 10" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="21" cy="18" r="2.5" fill="#22d3ee"/><defs><linearGradient id="fgrad" x1="0" y1="0" x2="42" y2="42"><stop stop-color="#1a56db"/><stop offset="1" stop-color="#0891b2"/></linearGradient></defs></svg>
+          <div><div style="font-size:18px;font-weight:900;color:#fff;line-height:1">VIO</div><div style="font-size:8px;color:rgba(255,255,255,.35);letter-spacing:.1em;margin-top:2px">VIGILANT INTELLIGENCE OPS</div></div>
+        </div>
+        <p style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.7;max-width:240px" data-i18n="footer_desc">AI-powered field operations management for Algerian companies.</p>
+        <div style="display:flex;gap:8px;margin-top:18px">
+          <a href="#" style="width:34px;height:34px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;text-decoration:none;color:rgba(255,255,255,.6);font-size:13px;font-weight:700;transition:.2s" onmouseover="this.style.background='rgba(26,86,219,.5)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">𝕏</a>
+          <a href="#" style="width:34px;height:34px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;text-decoration:none;color:rgba(255,255,255,.6);font-size:13px;font-weight:700;transition:.2s" onmouseover="this.style.background='rgba(26,86,219,.5)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">in</a>
+          <a href="#" style="width:34px;height:34px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;text-decoration:none;color:rgba(255,255,255,.6);font-size:13px;font-weight:700;transition:.2s" onmouseover="this.style.background='rgba(26,86,219,.5)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">f</a>
+          <a href="#" style="width:34px;height:34px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;text-decoration:none;color:rgba(255,255,255,.6);font-size:16px;transition:.2s" onmouseover="this.style.background='rgba(26,86,219,.5)'" onmouseout="this.style.background='rgba(255,255,255,.07)'">📸</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px" data-i18n="footer_product">Product</div>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <a href="#features" style="font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:.15s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.5)'" data-i18n="features">Features</a>
+          <a href="#pricing" style="font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:.15s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.5)'" data-i18n="pricing_nav">Pricing</a>
+          <a href="#" onclick="go('worker')" style="font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:.15s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.5)'" data-i18n="worker_app">Worker App</a>
+          <a href="#" onclick="go('manager')" style="font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:.15s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.5)'" data-i18n="footer_demo">View Demo</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px" data-i18n="footer_company">Company</div>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <a href="#" style="font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:.15s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.5)'" data-i18n="footer_about">About Us</a>
+          <a href="#usecases" style="font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:.15s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.5)'" data-i18n="usecases">Industries</a>
+          <a href="#" style="font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:.15s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.5)'" data-i18n="footer_blog">Blog</a>
+          <a href="#" style="font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:.15s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.5)'" data-i18n="footer_careers">Careers</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px" data-i18n="footer_contact">Contact</div>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <a href="/cdn-cgi/l/email-protection#3d5e5253495c5e497d4b5452104d515c495b524f50135947" style="font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:.15s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.5)'">📧 <span class="__cf_email__" data-cfemail="61020e0f150002152117080e4c110d0015070e130c4f051b">[email&#160;protected]</span></a>
+          <a href="tel:+213555000000" style="font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:.15s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.5)'">📞 +213 555 000 000</a>
+          <span style="font-size:13px;color:rgba(255,255,255,.5)">📍 Algiers, Algeria</span>
+          <a href="#" style="font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:.15s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.5)'" data-i18n="footer_support">Support Center</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.06);padding-top:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px" class="footer-bottom">
+      <div style="font-size:12px;color:rgba(255,255,255,.25)">© 2025 VIO — <strong style="color:rgba(255,255,255,.4)">Vigilant Intelligence Operations</strong>. All rights reserved.</div>
+      <div style="display:flex;gap:18px">
+        <a href="#" style="font-size:12px;color:rgba(255,255,255,.25);text-decoration:none" data-i18n="privacy">Privacy Policy</a>
+        <a href="#" style="font-size:12px;color:rgba(255,255,255,.25);text-decoration:none" data-i18n="terms">Terms</a>
+        <a href="#" style="font-size:12px;color:rgba(255,255,255,.25);text-decoration:none" data-i18n="footer_cookies">Cookies</a>
+      </div>
     </div>
   </footer>
 </div>
@@ -1203,8 +1360,6 @@ hr{border:none;border-top:1px solid var(--gray-100);margin:16px 0}
         <div style="font-size:18px;font-weight:800;color:var(--gray-900);margin-bottom:8px">Workspace Ready!</div>
         <div class="text-sm text-gray mb-4">Sample workers, missions, and data have been created</div>
         <button class="btn btn-primary w-full" style="padding:13px" onclick="go('manager')">Go to Dashboard →</button>
-
-    
       </div>
     </div>
   </div>
@@ -2017,10 +2172,8 @@ hr{border:none;border-top:1px solid var(--gray-100);margin:16px 0}
 <!--══════════════════════════════════════════════
     JAVASCRIPT
 ══════════════════════════════════════════════-->
-<script src="api-connect.js"></script>
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 'use strict';
-const API = 'https://vio-backend-8va0.onrender.com/api';
 // ─── STATE ────────────────────────────────────────────────────────────────
 let currentLang = 'en';
 let charts = {};
@@ -2098,7 +2251,7 @@ const T = {
     final_h:'Start Managing Your Field Teams Smarter',
     final_sub:'Join 500+ companies already using VIO to optimize their field operations',
     
-    view_demo:'View Demo Dashboard', privacy:'Privacy', terms:'Terms',
+    view_demo:'Live Demo', privacy:'Privacy Policy', terms:'Terms', footer_cookies:'Cookies', footer_product:'Product', footer_company:'Company', footer_contact:'Contact', footer_about:'About Us', footer_blog:'Blog', footer_careers:'Careers', footer_support:'Support', footer_demo:'View Demo', footer_desc:'AI-powered field operations management for Algerian companies.',
     // DASHBOARD
     dashboard:'Dashboard', tasks:'Tasks', notifications:'Notifications',
     workers_page:'Workteam', map_page:'Map', reports_page:'Reports',
@@ -2180,7 +2333,7 @@ const T = {
     final_h:'Commencez à gérer vos équipes terrain plus intelligemment',
     final_sub:'Rejoignez 500+ entreprises qui utilisent déjà VIO',
     
-    view_demo:'Voir le tableau de bord démo', privacy:'Confidentialité', terms:'CGU',
+    view_demo:'Voir le tableau de bord démo', privacy:'Confidentialité', terms:'CGU', footer_cookies:'Cookies', footer_product:'Produit', footer_company:'Entreprise', footer_contact:'Contact', footer_about:'À propos', footer_blog:'Blog', footer_careers:'Carrières', footer_support:'Support', footer_demo:'Voir la démo', footer_desc:'Plateforme de gestion des opérations terrain par IA pour les entreprises algériennes.',
     dashboard:'Tableau de bord', tasks:'Tâches', notifications:'Notifications',
     workers_page:'Équipe', map_page:'Carte', reports_page:'Rapports',
     ai_page:'Insights IA', settings_page:'Paramètres',
@@ -2260,7 +2413,7 @@ const T = {
     final_h:'ابدأ إدارة فرقك الميدانية بذكاء',
     final_sub:'انضم إلى أكثر من 500 شركة تستخدم VIO بالفعل',
     
-    view_demo:'عرض لوحة التحكم التجريبية', privacy:'الخصوصية', terms:'الشروط',
+    view_demo:'عرض لوحة التحكم التجريبية', privacy:'الخصوصية', terms:'الشروط', footer_cookies:'الكوكيز', footer_product:'المنتج', footer_company:'الشركة', footer_contact:'اتصل بنا', footer_about:'من نحن', footer_blog:'المدونة', footer_careers:'الوظائف', footer_support:'الدعم', footer_demo:'عرض تجريبي', footer_desc:'منصة إدارة العمليات الميدانية بالذكاء الاصطناعي للشركات الجزائرية.',
     dashboard:'لوحة التحكم', tasks:'المهام', notifications:'الإشعارات',
     workers_page:'الفريق', map_page:'الخريطة', reports_page:'التقارير',
     ai_page:'رؤى الذكاء الاصطناعي', settings_page:'الإعدادات',
@@ -2841,41 +2994,16 @@ function submitInvite() {
 }
 
 // ─── ONBOARDING ───────────────────────────────────────────────────────────
-async function obNext(step) {
+function obNext(step) {
   for (let i=1;i<=3;i++) {
     const formEl = document.getElementById('ob-step'+i);
     if (formEl) formEl.style.display = i===step ? 'block' : 'none';
     const stepEl = document.getElementById('step-'+i);
     if (stepEl) stepEl.style.background = i<=step ? 'linear-gradient(90deg,#1a56db,#0891b2)' : 'var(--gray-200)';
   }
-  if (step === 2) {
-    const email = document.getElementById('ob-email').value.trim();
-    const password = document.getElementById('ob-pass').value.trim();
-    const name = document.getElementById('ob-name').value.trim();
-    if (!email || !password || !name) {
-      showToast('Please fill in all fields', 'error');
-      obNext(1); return;
-    }
-    showToast('Connecting to server...');
-    const loginResult = await realLogin(email, password);
-    if (loginResult.success) {
-      currentUser = loginResult.user;
-      showToast('Welcome back ' + loginResult.user.name + '! ✅');
-    } else if (loginResult.error === 'SERVER_OFFLINE') {
-      showToast('Demo mode - server offline');
-    } else {
-      const registerResult = await realRegister(name, email, password, 'manager');
-      if (registerResult.success) {
-        currentUser = registerResult.user;
-        showToast('Account created! ✅');
-      } else {
-        showToast(registerResult.error, 'error');
-        obNext(1); return;
-      }
-    }
-  }
   if (step===3) runOnboardingInit();
 }
+
 function runOnboardingInit() {
   const msgs = ['Creating sample workers...','Setting up missions...','Generating reports...','Configuring AI...','Almost done...'];
   const el = document.getElementById('ob-init-text');
@@ -2885,23 +3013,11 @@ function runOnboardingInit() {
   if (doneEl) doneEl.style.display='none';
   let i=0;
   const iv = setInterval(() => {
-    if (i < msgs.length) {
-      if (el) el.textContent = msgs[i++];
-    } else {
-      clearInterval(iv);
-      if (initEl) initEl.style.display='none';
-      if (doneEl) doneEl.style.display='block';
-      // Auto redirect to dashboard after 1 second
-      setTimeout(() => {
-        if (currentUser && currentUser.role === 'worker') {
-          go('worker');
-        } else {
-          go('manager');
-        }
-      }, 1000);
-    }
+    if (i < msgs.length) { if (el) el.textContent = msgs[i++]; }
+    else { clearInterval(iv); if (initEl) initEl.style.display='none'; if (doneEl) doneEl.style.display='block'; }
   }, 600);
 }
+
 // ─── WORKER APP ───────────────────────────────────────────────────────────
 function workerLogin() {
   workerShowPage('home');
@@ -3048,6 +3164,23 @@ window.addEventListener('load', () => {
       el.style.transition='opacity .5s ease, transform .5s ease';
       obs.observe(el);
     });
+  }
+});
+
+// Mobile navigation
+function toggleMobileMenu() {
+  const m = document.getElementById('mobile-menu');
+  if (m) m.classList.toggle('open');
+}
+function closeMobileMenu() {
+  const m = document.getElementById('mobile-menu');
+  if (m) m.classList.remove('open');
+}
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('mobile-menu');
+  const btn = document.getElementById('mob-btn');
+  if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
+    menu.classList.remove('open');
   }
 });
 
